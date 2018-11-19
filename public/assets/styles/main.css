@@ -9,6 +9,8 @@ body {
   .board {
     display: flex;
     justify-content: space-evenly;
+    align-items: flex-end;
+    margin-top: 25px;
   }
   
   .field {
@@ -34,12 +36,7 @@ body {
     height: 25px;
   }
   
-  .position.player-one.default { background-color: #90F7EC; }
-  .position.player-one.default:hover {
-    background-color: #32CCBC;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transform: translate(1px, 1px);
-  }
+  .position.player-one.default { background-color: #ABDCFF; }
   
   .field.player-two {
     width: 620px;
@@ -52,11 +49,11 @@ body {
   }
   
   .position.player-two.default {
-    background-color: #ABDCFF;
+    background-color: #90F7EC;
     transition: transform 500ms;
   }
   .position.player-two.default:hover {
-    background-color: #0396FF;
+    background-color: #32CCBC;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transform: translate(3px, 3px);
   }
