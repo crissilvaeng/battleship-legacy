@@ -7,6 +7,10 @@
   "author": "Cristina Silva (crissilvaeng) <crissilva.eng@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start": "node server.js",
+    "deploy": "now --docker -e PORT=443 -e NODE_ENV=production"
+  },
   "dependencies": {
     "express": "^4.16.4",
     "socket.io": "^2.1.1",
