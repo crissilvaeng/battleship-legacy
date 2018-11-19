@@ -2,6 +2,14 @@ body {
     background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);
     animation: Gradient 15s ease infinite;
     background-size: 200% 200%;
+    color: #ffffff;
+  }
+
+  h1,
+  h6 {
+    font-family: 'Open Sans';
+    font-weight: 300;
+    text-align: center;
   }
 
   @keyframes Gradient {
@@ -20,25 +28,28 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: flex-end;
-    margin-top: 25px;
   }
   
   .field {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   }
   
   .position {
     box-sizing: border-box;
     margin: 1px;
     pointer-events: all;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
   }
   
   .field.player-one {
-    width: 270px;
-    height: 270px;
+    width: 297px;
+    height: 297px;
   }
   
   .position.player-one {
@@ -54,8 +65,8 @@ body {
   }
 
   .field.player-two {
-    width: 620px;
-    height: 620px;
+    width: 682px;
+    height: 682px;
   }
   
   .position.player-two {
@@ -63,6 +74,11 @@ body {
     height: 60px;
   }
   
+  .position.player-two-label {
+    width: 20px;
+    height: 20px;
+  }
+
   .position.player-two.water {
     background-color: #90F7EC;
     transition: transform 500ms;
