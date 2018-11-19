@@ -2,13 +2,17 @@
   "name": "battleship",
   "version": "0.0.0",
   "description": "A web battleship game.",
-  "main": "index.js",
+  "main": "server.js",
   "repository": "github.com/crissilvaeng/battleship",
   "author": "Cristina Silva (crissilvaeng) <crissilva.eng@gmail.com>",
   "license": "MIT",
   "private": false,
   "dependencies": {
     "express": "^4.16.4",
+    "socket.io": "^2.1.1",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
   }
 }
