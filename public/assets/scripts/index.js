@@ -41,6 +41,7 @@ mock('one', one)
 const onPositionHover = document.getElementById('on-position-hover')
 const onPositionClick = document.getElementById('on-position-click')
 const onWaterOffensive = document.getElementById('on-water-offensive')
+const onNotificationReceive = document.getElementById('on-notification-receive')
 
 const battle = window.location.pathname
 const socket = io()
@@ -57,7 +58,7 @@ socket.on('battle.offensive', ofessive => {
   }
 
   one[row][column] = 'W'
-  // onWaterOffensive.play() // replace by notification
+  onNotificationReceive.play()
   position.classList.remove('water')
   socket.emit('battle.report', { battle: ofessive.battle, target: ofessive.target, hit: false })
 })
