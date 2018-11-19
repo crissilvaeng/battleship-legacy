@@ -1,4 +1,8 @@
-const [onPositionHover] = document.getElementsByTagName("audio")
+const onPositionHover = document.getElementById('on-position-hover')
+const onPositionClick = document.getElementById('on-position-click')
 
-const [...positions] = document.getElementsByClassName('position')
-positions.forEach(position => position.onmouseenter = () => onPositionHover.play())
+const [...positions] = document.getElementsByClassName('default')
+positions.forEach(position => {
+  position.onmouseenter = () => onPositionHover.play()
+  position.onclick = () => onPositionClick.play()
+})
