@@ -86,6 +86,11 @@ socket.on('battle.report', report => {
   onWaterOffensive.play()
 })
 
+socket.on('battle.stats', stats => {
+  const players = document.getElementById('stats-players')
+  players.textContent = stats.players.length
+})
+
 const getTarget = target => {
   const [_, position] = target.split('-')
   const value = parseInt(position)

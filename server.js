@@ -12,7 +12,12 @@ app.use('/:game', express.static(path.join(__dirname, 'public')))
 app.get('/', (_, res) => res.redirect(`${uuid()}`))
 
 io.on('connection', socket => {
-  socket.on('battle.join', ({ battle }) => socket.join(battle))
+  socket.on('battle.join', ({ battle }) => {
+    socket.join(battle)
+    io.in(battle).clients((_, clients) => {
+      io.in(battle).emit('battle.stats', { players: clients })
+    })
+  })
 
   socket.on('battle.offensive', offensive =>
     socket.to(offensive.battle).emit('battle.offensive', offensive))

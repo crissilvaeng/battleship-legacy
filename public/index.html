@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Battleship</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/regular.css" integrity="sha384-z3ccjLyn+akM2DtvRQCXJwvT5bGZsspS4uptQKNXNg778nyzvdMqiGcqHVGiAUyY" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/styles/main.css">
 </head>
 
@@ -18,138 +20,143 @@
   <audio preload="auto" id="on-ship-hit" src="assets/medias/on-ship-hit.ogg"></audio>
 
   <div class="board">
-    <div class="field player-one" id="player-one">
-      <svg class="position player-one"></svg>
-      <div class="position player-one"><h6>a</h6></div>
-      <div class="position player-one"><h6>b</h6></div>
-      <div class="position player-one"><h6>c</h6></div>
-      <div class="position player-one"><h6>d</h6></div>
-      <div class="position player-one"><h6>e</h6></div>
-      <div class="position player-one"><h6>f</h6></div>
-      <div class="position player-one"><h6>g</h6></div>
-      <div class="position player-one"><h6>h</h6></div>
-      <div class="position player-one"><h6>i</h6></div>
-      <div class="position player-one"><h6>j</h6></div>
-
-      <div class="position player-one"><h6>1</h6></div>
-      <svg class="position player-one water" id="one-00"></svg>
-      <svg class="position player-one water" id="one-01"></svg>
-      <svg class="position player-one water" id="one-02"></svg>
-      <svg class="position player-one water" id="one-03"></svg>
-      <svg class="position player-one water" id="one-04"></svg>
-      <svg class="position player-one water" id="one-05"></svg>
-      <svg class="position player-one water" id="one-06"></svg>
-      <svg class="position player-one water" id="one-07"></svg>
-      <svg class="position player-one water" id="one-08"></svg>
-      <svg class="position player-one water" id="one-09"></svg>
-
-      <div class="position player-one"><h6>2</h6></div>
-      <svg class="position player-one water" id="one-10"></svg>
-      <svg class="position player-one water" id="one-11"></svg>
-      <svg class="position player-one water" id="one-12"></svg>
-      <svg class="position player-one water" id="one-13"></svg>
-      <svg class="position player-one water" id="one-14"></svg>
-      <svg class="position player-one water" id="one-15"></svg>
-      <svg class="position player-one water" id="one-16"></svg>
-      <svg class="position player-one water" id="one-17"></svg>
-      <svg class="position player-one water" id="one-18"></svg>
-      <svg class="position player-one water" id="one-19"></svg>
-
-      <div class="position player-one"><h6>3</h6></div>
-      <svg class="position player-one water" id="one-20"></svg>
-      <svg class="position player-one water" id="one-21"></svg>
-      <svg class="position player-one water" id="one-22"></svg>
-      <svg class="position player-one water" id="one-23"></svg>
-      <svg class="position player-one water" id="one-24"></svg>
-      <svg class="position player-one water" id="one-25"></svg>
-      <svg class="position player-one water" id="one-26"></svg>
-      <svg class="position player-one water" id="one-27"></svg>
-      <svg class="position player-one water" id="one-28"></svg>
-      <svg class="position player-one water" id="one-29"></svg>
-
-      <div class="position player-one"><h6>4</h6></div>
-      <svg class="position player-one water" id="one-30"></svg>
-      <svg class="position player-one water" id="one-31"></svg>
-      <svg class="position player-one water" id="one-32"></svg>
-      <svg class="position player-one water" id="one-33"></svg>
-      <svg class="position player-one water" id="one-34"></svg>
-      <svg class="position player-one water" id="one-35"></svg>
-      <svg class="position player-one water" id="one-36"></svg>
-      <svg class="position player-one water" id="one-37"></svg>
-      <svg class="position player-one water" id="one-38"></svg>
-      <svg class="position player-one water" id="one-39"></svg>
-      
-      <div class="position player-one"><h6>5</h6></div>
-      <svg class="position player-one water" id="one-40"></svg>
-      <svg class="position player-one water" id="one-41"></svg>
-      <svg class="position player-one water" id="one-42"></svg>
-      <svg class="position player-one water" id="one-43"></svg>
-      <svg class="position player-one water" id="one-44"></svg>
-      <svg class="position player-one water" id="one-45"></svg>
-      <svg class="position player-one water" id="one-46"></svg>
-      <svg class="position player-one water" id="one-47"></svg>
-      <svg class="position player-one water" id="one-48"></svg>
-      <svg class="position player-one water" id="one-49"></svg>
-
-      <div class="position player-one"><h6>6</h6></div>
-      <svg class="position player-one water" id="one-50"></svg>
-      <svg class="position player-one water" id="one-51"></svg>
-      <svg class="position player-one water" id="one-52"></svg>
-      <svg class="position player-one water" id="one-53"></svg>
-      <svg class="position player-one water" id="one-54"></svg>
-      <svg class="position player-one water" id="one-55"></svg>
-      <svg class="position player-one water" id="one-56"></svg>
-      <svg class="position player-one water" id="one-57"></svg>
-      <svg class="position player-one water" id="one-58"></svg>
-      <svg class="position player-one water" id="one-59"></svg>
-
-      <div class="position player-one"><h6>7</h6></div>
-      <svg class="position player-one water" id="one-60"></svg>
-      <svg class="position player-one water" id="one-61"></svg>
-      <svg class="position player-one water" id="one-62"></svg>
-      <svg class="position player-one water" id="one-63"></svg>
-      <svg class="position player-one water" id="one-64"></svg>
-      <svg class="position player-one water" id="one-65"></svg>
-      <svg class="position player-one water" id="one-66"></svg>
-      <svg class="position player-one water" id="one-67"></svg>
-      <svg class="position player-one water" id="one-68"></svg>
-      <svg class="position player-one water" id="one-69"></svg>
-
-      <div class="position player-one"><h6>8</h6></div>
-      <svg class="position player-one water" id="one-70"></svg>
-      <svg class="position player-one water" id="one-71"></svg>
-      <svg class="position player-one water" id="one-72"></svg>
-      <svg class="position player-one water" id="one-73"></svg>
-      <svg class="position player-one water" id="one-74"></svg>
-      <svg class="position player-one water" id="one-75"></svg>
-      <svg class="position player-one water" id="one-76"></svg>
-      <svg class="position player-one water" id="one-77"></svg>
-      <svg class="position player-one water" id="one-78"></svg>
-      <svg class="position player-one water" id="one-79"></svg>
-
-      <div class="position player-one"><h6>9</h6></div>
-      <svg class="position player-one water" id="one-80"></svg>
-      <svg class="position player-one water" id="one-81"></svg>
-      <svg class="position player-one water" id="one-82"></svg>
-      <svg class="position player-one water" id="one-83"></svg>
-      <svg class="position player-one water" id="one-84"></svg>
-      <svg class="position player-one water" id="one-85"></svg>
-      <svg class="position player-one water" id="one-86"></svg>
-      <svg class="position player-one water" id="one-87"></svg>
-      <svg class="position player-one water" id="one-88"></svg>
-      <svg class="position player-one water" id="one-89"></svg>
-
-      <div class="position player-one"><h6>10</h6></div>
-      <svg class="position player-one water" id="one-90"></svg>
-      <svg class="position player-one water" id="one-91"></svg>
-      <svg class="position player-one water" id="one-92"></svg>
-      <svg class="position player-one water" id="one-93"></svg>
-      <svg class="position player-one water" id="one-94"></svg>
-      <svg class="position player-one water" id="one-95"></svg>
-      <svg class="position player-one water" id="one-96"></svg>
-      <svg class="position player-one water" id="one-97"></svg>
-      <svg class="position player-one water" id="one-98"></svg>
-      <svg class="position player-one water" id="one-99"></svg>
+    <div class="player-panel">
+      <div class="battle">
+          <h6><span id="stats-players">0</span> players in this battle!</h6>
+      </div>
+      <div class="field player-one" id="player-one">
+          <svg class="position player-one"></svg>
+          <div class="position player-one"><h6>a</h6></div>
+          <div class="position player-one"><h6>b</h6></div>
+          <div class="position player-one"><h6>c</h6></div>
+          <div class="position player-one"><h6>d</h6></div>
+          <div class="position player-one"><h6>e</h6></div>
+          <div class="position player-one"><h6>f</h6></div>
+          <div class="position player-one"><h6>g</h6></div>
+          <div class="position player-one"><h6>h</h6></div>
+          <div class="position player-one"><h6>i</h6></div>
+          <div class="position player-one"><h6>j</h6></div>
+    
+          <div class="position player-one"><h6>1</h6></div>
+          <svg class="position player-one water" id="one-00"></svg>
+          <svg class="position player-one water" id="one-01"></svg>
+          <svg class="position player-one water" id="one-02"></svg>
+          <svg class="position player-one water" id="one-03"></svg>
+          <svg class="position player-one water" id="one-04"></svg>
+          <svg class="position player-one water" id="one-05"></svg>
+          <svg class="position player-one water" id="one-06"></svg>
+          <svg class="position player-one water" id="one-07"></svg>
+          <svg class="position player-one water" id="one-08"></svg>
+          <svg class="position player-one water" id="one-09"></svg>
+    
+          <div class="position player-one"><h6>2</h6></div>
+          <svg class="position player-one water" id="one-10"></svg>
+          <svg class="position player-one water" id="one-11"></svg>
+          <svg class="position player-one water" id="one-12"></svg>
+          <svg class="position player-one water" id="one-13"></svg>
+          <svg class="position player-one water" id="one-14"></svg>
+          <svg class="position player-one water" id="one-15"></svg>
+          <svg class="position player-one water" id="one-16"></svg>
+          <svg class="position player-one water" id="one-17"></svg>
+          <svg class="position player-one water" id="one-18"></svg>
+          <svg class="position player-one water" id="one-19"></svg>
+    
+          <div class="position player-one"><h6>3</h6></div>
+          <svg class="position player-one water" id="one-20"></svg>
+          <svg class="position player-one water" id="one-21"></svg>
+          <svg class="position player-one water" id="one-22"></svg>
+          <svg class="position player-one water" id="one-23"></svg>
+          <svg class="position player-one water" id="one-24"></svg>
+          <svg class="position player-one water" id="one-25"></svg>
+          <svg class="position player-one water" id="one-26"></svg>
+          <svg class="position player-one water" id="one-27"></svg>
+          <svg class="position player-one water" id="one-28"></svg>
+          <svg class="position player-one water" id="one-29"></svg>
+    
+          <div class="position player-one"><h6>4</h6></div>
+          <svg class="position player-one water" id="one-30"></svg>
+          <svg class="position player-one water" id="one-31"></svg>
+          <svg class="position player-one water" id="one-32"></svg>
+          <svg class="position player-one water" id="one-33"></svg>
+          <svg class="position player-one water" id="one-34"></svg>
+          <svg class="position player-one water" id="one-35"></svg>
+          <svg class="position player-one water" id="one-36"></svg>
+          <svg class="position player-one water" id="one-37"></svg>
+          <svg class="position player-one water" id="one-38"></svg>
+          <svg class="position player-one water" id="one-39"></svg>
+          
+          <div class="position player-one"><h6>5</h6></div>
+          <svg class="position player-one water" id="one-40"></svg>
+          <svg class="position player-one water" id="one-41"></svg>
+          <svg class="position player-one water" id="one-42"></svg>
+          <svg class="position player-one water" id="one-43"></svg>
+          <svg class="position player-one water" id="one-44"></svg>
+          <svg class="position player-one water" id="one-45"></svg>
+          <svg class="position player-one water" id="one-46"></svg>
+          <svg class="position player-one water" id="one-47"></svg>
+          <svg class="position player-one water" id="one-48"></svg>
+          <svg class="position player-one water" id="one-49"></svg>
+    
+          <div class="position player-one"><h6>6</h6></div>
+          <svg class="position player-one water" id="one-50"></svg>
+          <svg class="position player-one water" id="one-51"></svg>
+          <svg class="position player-one water" id="one-52"></svg>
+          <svg class="position player-one water" id="one-53"></svg>
+          <svg class="position player-one water" id="one-54"></svg>
+          <svg class="position player-one water" id="one-55"></svg>
+          <svg class="position player-one water" id="one-56"></svg>
+          <svg class="position player-one water" id="one-57"></svg>
+          <svg class="position player-one water" id="one-58"></svg>
+          <svg class="position player-one water" id="one-59"></svg>
+    
+          <div class="position player-one"><h6>7</h6></div>
+          <svg class="position player-one water" id="one-60"></svg>
+          <svg class="position player-one water" id="one-61"></svg>
+          <svg class="position player-one water" id="one-62"></svg>
+          <svg class="position player-one water" id="one-63"></svg>
+          <svg class="position player-one water" id="one-64"></svg>
+          <svg class="position player-one water" id="one-65"></svg>
+          <svg class="position player-one water" id="one-66"></svg>
+          <svg class="position player-one water" id="one-67"></svg>
+          <svg class="position player-one water" id="one-68"></svg>
+          <svg class="position player-one water" id="one-69"></svg>
+    
+          <div class="position player-one"><h6>8</h6></div>
+          <svg class="position player-one water" id="one-70"></svg>
+          <svg class="position player-one water" id="one-71"></svg>
+          <svg class="position player-one water" id="one-72"></svg>
+          <svg class="position player-one water" id="one-73"></svg>
+          <svg class="position player-one water" id="one-74"></svg>
+          <svg class="position player-one water" id="one-75"></svg>
+          <svg class="position player-one water" id="one-76"></svg>
+          <svg class="position player-one water" id="one-77"></svg>
+          <svg class="position player-one water" id="one-78"></svg>
+          <svg class="position player-one water" id="one-79"></svg>
+    
+          <div class="position player-one"><h6>9</h6></div>
+          <svg class="position player-one water" id="one-80"></svg>
+          <svg class="position player-one water" id="one-81"></svg>
+          <svg class="position player-one water" id="one-82"></svg>
+          <svg class="position player-one water" id="one-83"></svg>
+          <svg class="position player-one water" id="one-84"></svg>
+          <svg class="position player-one water" id="one-85"></svg>
+          <svg class="position player-one water" id="one-86"></svg>
+          <svg class="position player-one water" id="one-87"></svg>
+          <svg class="position player-one water" id="one-88"></svg>
+          <svg class="position player-one water" id="one-89"></svg>
+    
+          <div class="position player-one"><h6>10</h6></div>
+          <svg class="position player-one water" id="one-90"></svg>
+          <svg class="position player-one water" id="one-91"></svg>
+          <svg class="position player-one water" id="one-92"></svg>
+          <svg class="position player-one water" id="one-93"></svg>
+          <svg class="position player-one water" id="one-94"></svg>
+          <svg class="position player-one water" id="one-95"></svg>
+          <svg class="position player-one water" id="one-96"></svg>
+          <svg class="position player-one water" id="one-97"></svg>
+          <svg class="position player-one water" id="one-98"></svg>
+          <svg class="position player-one water" id="one-99"></svg>
+      </div>
     </div>
     
     <div class="field player-two" id="player-one">

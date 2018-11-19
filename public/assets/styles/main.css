@@ -24,6 +24,11 @@ body {
     }
   }
 
+  .player-panel {
+    display: flex;
+    flex-flow: column wrap;
+  }
+
   .board {
     display: flex;
     justify-content: space-evenly;
