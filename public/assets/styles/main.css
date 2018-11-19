@@ -36,8 +36,9 @@ body {
     height: 25px;
   }
   
-  .position.player-one.default { background-color: #ABDCFF; }
-  
+  .position.player-one.water { background-color: #ABDCFF; }
+  .position.player-one.ship { background-color: #0396FF; }
+
   .field.player-two {
     width: 620px;
     height: 620px;
@@ -48,11 +49,11 @@ body {
     height: 60px;
   }
   
-  .position.player-two.default {
+  .position.player-two.water {
     background-color: #90F7EC;
     transition: transform 500ms;
   }
-  .position.player-two.default:hover {
+  .position.player-two.water:hover {
     background-color: #32CCBC;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transform: translate(3px, 3px);
