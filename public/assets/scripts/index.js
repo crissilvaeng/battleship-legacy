@@ -42,6 +42,7 @@ const onPositionHover = document.getElementById('on-position-hover')
 const onPositionClick = document.getElementById('on-position-click')
 const onWaterOffensive = document.getElementById('on-water-offensive')
 const onNotificationReceive = document.getElementById('on-notification-receive')
+const onShipHit = document.getElementById('on-ship-hit')
 
 const battle = window.location.pathname
 const socket = io()
@@ -52,13 +53,17 @@ socket.on('battle.offensive', ofessive => {
   const row = ofessive.target.row
   const column = ofessive.target.column
   const position = document.getElementById(`one-${row}${column}`)
+  onNotificationReceive.play()
 
   if (one[row][column]) {
+    one[row][column] = 'X'
+    position.classList.remove('ship')
+    position.classList.add('hit')
+    socket.emit('battle.report', { battle: ofessive.battle, target: ofessive.target, hit: true })
     return
   }
 
-  one[row][column] = 'W'
-  onNotificationReceive.play()
+  one[row][column] = 'O'
   position.classList.remove('water')
   socket.emit('battle.report', { battle: ofessive.battle, target: ofessive.target, hit: false })
 })
@@ -69,10 +74,14 @@ socket.on('battle.report', report => {
   const position = document.getElementById(`two-${row}${column}`)
 
   if (report.hit) {
+    two[row][column] = 'X'
+    position.classList.remove('water')
+    position.classList.add('hit')
+    onShipHit.play()
     return
   }
 
-  one[row][column] = 'W'
+  two[row][column] = 'O'
   position.classList.remove('water')
   onWaterOffensive.play()
 })

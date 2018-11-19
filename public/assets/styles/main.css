@@ -1,11 +1,21 @@
-html {
-  min-height: 100%;
-}
-
 body {
     background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);
+    animation: Gradient 15s ease infinite;
+    background-size: 200% 200%;
   }
-  
+
+  @keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+
   .board {
     display: flex;
     justify-content: space-evenly;
@@ -39,6 +49,10 @@ body {
   .position.player-one.water { background-color: #ABDCFF; }
   .position.player-one.ship { background-color: #0396FF; }
 
+  .position.player-one.hit {
+    background-color: #EA5455;
+  }
+
   .field.player-two {
     width: 620px;
     height: 620px;
@@ -59,3 +73,6 @@ body {
     transform: translate(3px, 3px);
   }
   
+  .position.player-two.hit {
+      background-color: #28C76F;
+  }
