@@ -46,13 +46,34 @@ const battle = window.location.pathname
 const socket = io()
 
 socket.emit('battle.join', { battle })
-socket.on('battle.offensive', ({ row, column, position: id }) => {
+
+socket.on('battle.offensive', ofessive => {
+  const row = ofessive.target.row
+  const column = ofessive.target.column
+  const position = document.getElementById(`one-${row}${column}`)
+
   if (one[row][column]) {
     return
   }
-  onWaterOffensive.play()
-  const position = document.getElementById(id)
+
+  one[row][column] = 'W'
+  // onWaterOffensive.play() // replace by notification
   position.classList.remove('water')
+  socket.emit('battle.report', { battle: ofessive.battle, target: ofessive.target, hit: false })
+})
+
+socket.on('battle.report', report => {
+  const row = report.target.row
+  const column = report.target.column
+  const position = document.getElementById(`two-${row}${column}`)
+
+  if (report.hit) {
+    return
+  }
+
+  one[row][column] = 'W'
+  position.classList.remove('water')
+  onWaterOffensive.play()
 })
 
 const getTarget = target => {
@@ -60,7 +81,7 @@ const getTarget = target => {
   const value = parseInt(position)
   const row = parseInt(value / 10)
   const column = parseInt(value % 10)
-  return { row, column, position: `one-${position}` }
+  return { row, column }
 }
 
 const onClickHandler = event => {

@@ -11,11 +11,14 @@ const port = process.env.PORT || 3000
 app.use('/:game', express.static(path.join(__dirname, 'public')))
 app.get('/', (_, res) => res.redirect(`${uuid()}`))
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
   socket.on('battle.join', ({ battle }) => socket.join(battle))
 
-  socket.on('battle.offensive', ({ battle, target }) =>
-    socket.to(battle).emit('battle.offensive', target))
+  socket.on('battle.offensive', offensive =>
+    socket.to(offensive.battle).emit('battle.offensive', offensive))
+
+  socket.on('battle.report', report =>
+    socket.to(report.battle).emit('battle.report', report))
 })
 
 http.listen(port, () => console.log(`Battleship running on  0.0.0.0:${port}!`))
