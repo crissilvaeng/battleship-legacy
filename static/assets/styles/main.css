@@ -21,6 +21,7 @@ body {
   .position {
     box-sizing: border-box;
     margin: 1px;
+    pointer-events: all;
   }
   
   .field.player-one {
