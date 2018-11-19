@@ -1,0 +1,62 @@
+html {
+  min-height: 100%;
+}
+
+body {
+    background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%);
+  }
+  
+  .board {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .field {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .position {
+    box-sizing: border-box;
+    margin: 1px;
+  }
+  
+  .field.player-one {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .position.player-one {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .position.player-one.default { background-color: #90F7EC; }
+  .position.player-one.default:hover {
+    background-color: #32CCBC;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: translate(1px, 1px);
+  }
+  
+  .field.player-two {
+    width: 620px;
+    height: 620px;
+  }
+  
+  .position.player-two {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .position.player-two.default {
+    background-color: #ABDCFF;
+    transition: transform 500ms;
+  }
+  .position.player-two.default:hover {
+    background-color: #0396FF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: translate(3px, 3px);
+  }
+  
