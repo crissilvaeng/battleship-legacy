@@ -1,0 +1,10 @@
+{
+  "name": "battleship",
+  "version": "0.0.0",
+  "description": "A web battleship game.",
+  "main": "index.js",
+  "repository": "github.com/crissilvaeng/battleship",
+  "author": "Cristina Silva (crissilvaeng) <crissilva.eng@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
