@@ -24,13 +24,13 @@ body {
   }
   
   .field.player-one {
-    width: 220px;
-    height: 220px;
+    width: 270px;
+    height: 270px;
   }
   
   .position.player-one {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
   }
   
   .position.player-one.default { background-color: #90F7EC; }
