@@ -86,7 +86,7 @@ body {
 
   .position.player-two.water {
     background-color: #90F7EC;
-    transition: transform 500ms;
+    transition: transform 300ms;
   }
   .position.player-two.water:hover {
     background-color: #32CCBC;
