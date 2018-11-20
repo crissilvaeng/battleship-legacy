@@ -1,3 +1,25 @@
+const q = document.querySelector.bind(document)
+const qs = document.getElementsByClassName.bind(document)
+
+const play = audio => audio.play()
+
+const audios = {
+  onHover: q('#on-position-hover'),
+  onClick: q('#on-position-click'),
+  onNotification: q('#on-notification-receive'),
+  onWater: q('#on-water-offensive'),
+  onShip: q('#on-ship-hit')
+}
+
+const flipClass = (previous, before) => element => {
+  element.classList.remove(previous)
+  element.classList.add(before)
+}
+
+const addShipIn = position => flipClass('water', 'ship')(position)
+const hitShipIn = position => flipClass('ship', 'hit')(position)
+const hitWaterIn = position => position.classList.add('water')
+
 const one = [
   [0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -26,23 +48,11 @@ const two = [
 
 const mock = (player, field) => {
   const n = [...Array(10).keys()]
-  n.forEach(row => n.forEach(column => {
-    if (field[row][column]) {
-      const id = `${player}-${row}${column}`
-      const position = document.getElementById(id)
-      position.classList.remove('water')
-      position.classList.add('ship')
-    }
-  }))
+  n.forEach(row => n.forEach(column =>
+    field[row][column] && addShipIn(q(`#${player}-${row}${column}`))))
 }
 
 mock('one', one)
-
-const onPositionHover = document.getElementById('on-position-hover')
-const onPositionClick = document.getElementById('on-position-click')
-const onWaterOffensive = document.getElementById('on-water-offensive')
-const onNotificationReceive = document.getElementById('on-notification-receive')
-const onShipHit = document.getElementById('on-ship-hit')
 
 const battle = window.location.pathname
 const socket = io()
@@ -52,42 +62,41 @@ socket.emit('battle.join', { battle })
 socket.on('battle.offensive', ofessive => {
   const row = ofessive.target.row
   const column = ofessive.target.column
-  const position = document.getElementById(`one-${row}${column}`)
-  onNotificationReceive.play()
+  const position = q(`#one-${row}${column}`)
+
+  play(audios.onNotification)
 
   if (one[row][column]) {
     one[row][column] = 'X'
-    position.classList.remove('ship')
-    position.classList.add('hit')
+    hitShipIn(position)
     socket.emit('battle.report', { battle: ofessive.battle, target: ofessive.target, hit: true })
     return
   }
 
   one[row][column] = 'O'
-  position.classList.remove('water')
+  hitWaterIn(position)
   socket.emit('battle.report', { battle: ofessive.battle, target: ofessive.target, hit: false })
 })
 
 socket.on('battle.report', report => {
   const row = report.target.row
   const column = report.target.column
-  const position = document.getElementById(`two-${row}${column}`)
+  const position = q(`#two-${row}${column}`)
 
   if (report.hit) {
     two[row][column] = 'X'
-    position.classList.remove('water')
-    position.classList.add('hit')
-    onShipHit.play()
+    hitShipIn(position)
+    play(audios.onShip)
     return
   }
 
   two[row][column] = 'O'
-  position.classList.remove('water')
-  onWaterOffensive.play()
+  hitWaterIn(position)
+  play(audios.onWater)
 })
 
 socket.on('battle.stats', stats => {
-  const players = document.getElementById('stats-players')
+  const players = q('#stats-players')
   players.textContent = stats.players.length
 })
 
@@ -100,13 +109,13 @@ const getTarget = target => {
 }
 
 const onClickHandler = event => {
-  onPositionClick.play()
+  play(audios.onClick)
   const target = getTarget(event.target.id)
   socket.emit('battle.offensive', { battle, target })
 }
 
-const [...positions] = document.getElementsByClassName('position player-two water')
-positions.forEach(position => position.onmouseenter = () => onPositionHover.play())
+const [...positions] = qs('position player-two water')
+positions.forEach(position => position.onmouseenter = () => play(audios.onHover))
 
-const [...opponent] = document.getElementsByClassName('position player-two')
+const [...opponent] = qs('position player-two')
 opponent.forEach(position => position.onclick = onClickHandler)
