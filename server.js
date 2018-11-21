@@ -8,8 +8,19 @@ const uuid = require('uuid/v4')
 
 const port = process.env.PORT || 3000
 
+const waiting = []
+
+const getBattle = () => {
+  if (waiting.length === 0) {
+    const battle = uuid()
+    waiting.push(battle)
+    return battle
+  }
+  return waiting.pop()
+}
+
 app.use('/:game', express.static(path.join(__dirname, 'public')))
-app.get('/', (_, res) => res.redirect(`${uuid()}`))
+app.get('/', (_, res) => res.redirect(`${getBattle()}`))
 
 const getRandomBetween = (min, max) =>
   Math.floor(Math.random() * (max - min + 1)) + min
