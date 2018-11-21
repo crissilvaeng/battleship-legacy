@@ -60,6 +60,16 @@ io.on('connection', socket => {
     })
   })
 
+  socket.on('turn.change', ({ battle }) => {
+    io.in(battle).clients((_, clients) => {
+      const opponent = clients.filter(client => client !== socket.id)
+      io.to(opponent).emit('turn.change',  {
+        battle: battle,
+        flag: uuid()
+      })
+    })
+  })
+
   socket.on('battle.offensive', offensive =>
     socket.to(offensive.battle).emit('battle.offensive', offensive))
 

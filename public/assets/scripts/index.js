@@ -20,7 +20,8 @@ const addShipIn = position => flipClass('water', 'ship')(position)
 const hitShipIn = position => flipClass('ship', 'hit')(position)
 const hitWaterIn = position => position.classList.remove('water')
 
-let field = new Array(100).fill(0)
+let playerField = new Array(100).fill(0)
+let turnFlag = ''
 
 const displayFleet = (field) => {
   field.forEach((value, index) => value === 1 && addShipIn(q(`#one-${index}`)))
@@ -31,31 +32,31 @@ const socket = io()
 
 socket.emit('battle.join', { battle })
 
-socket.on('battle.offensive', ofessive => {
-  const row = ofessive.target.row
-  const column = ofessive.target.column
-  const position = q(`#one-${row}${column}`)
+socket.on('battle.offensive', ({ battle, target, flag }) => {
+  const position = q(`#one-${target}`)
 
   play(audios.onNotification)
 
-  if (one[row][column] === 1) {
-    one[row][column] = 'X'
+  if (playerField[target] === 1) {
+    playerField[target] = 'X'
     hitShipIn(position)
-    socket.emit('battle.report', { battle: ofessive.battle, target: ofessive.target, hit: true })
+    socket.emit('battle.report', { battle, target, flag, movement: 'report', result: true })
     return
   }
 
-  one[row][column] = 'O'
+  playerField[target] = 'O'
   hitWaterIn(position)
-  socket.emit('battle.report', { battle: ofessive.battle, target: ofessive.target, hit: false })
+  socket.emit('battle.report', { battle, target, flag, movement: 'report', result: false })
 })
 
-socket.on('battle.report', report => {
-  const row = report.target.row
-  const column = report.target.column
-  const position = q(`#two-${row}${column}`)
+socket.on('battle.report', ({ battle, target, flag, result }) => {
+  const position = q(`#two-${target}`)
 
-  if (report.hit) {
+  q('#stats-flag').classList.add('hide')
+  turnFlag = ''
+  socket.emit('turn.change', { battle })
+
+  if (result) {
     hitShipIn(position)
     play(audios.onShip)
     return
@@ -70,27 +71,37 @@ socket.on('battle.stats', stats => {
   players.textContent = stats.players.length
 })
 
-socket.on('game.start', data => {
-  console.log(data)
+socket.on('game.start', ({ field, flag }) => {
   play(audios.onNotification)
-  field = data.field
+  playerField = field
   displayFleet(field)
   
-  if (data.flag) q('#stats-flag').classList.remove('hide')
+  if (flag) {
+    q('#stats-flag').classList.remove('hide')
+    turnFlag = flag
+  }
+})
+
+socket.on('turn.change', ({ flag }) => {
+  play(audios.onNotification)
+  q('#stats-flag').classList.remove('hide')
+  turnFlag = flag
 })
 
 const getTarget = target => {
   const [_, position] = target.split('-')
-  const value = parseInt(position)
-  const row = parseInt(value / 10)
-  const column = parseInt(value % 10)
-  return { row, column }
+  return parseInt(position)
 }
 
 const onClickHandler = event => {
   play(audios.onClick)
   const target = getTarget(event.target.id)
-  socket.emit('battle.offensive', { battle, target })
+  socket.emit('battle.offensive', { 
+    battle: battle,
+    movement: 'attack',
+    flag: turnFlag,
+    target: target
+  })
 }
 
 const [...positions] = qs('position player-two water')
