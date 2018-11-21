@@ -18,41 +18,13 @@ const flipClass = (previous, before) => element => {
 
 const addShipIn = position => flipClass('water', 'ship')(position)
 const hitShipIn = position => flipClass('ship', 'hit')(position)
-const hitWaterIn = position => position.classList.add('water')
+const hitWaterIn = position => position.classList.remove('water')
 
-const one = [
-  [0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-  [0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
-  [0, 1, 0, 1, 0, 0, 0, 1, 1, 1],
-  [0, 1, 0, 1, 0, 0, 0, 0, 0, 1],
-  [0, 1, 0, 0, 0, 0, 1, 1, 0, 1],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [0, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
-]
+let field = new Array(100).fill(0)
 
-const two = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-]
-
-const mock = (player, field) => {
-  const n = [...Array(10).keys()]
-  n.forEach(row => n.forEach(column =>
-    field[row][column] && addShipIn(q(`#${player}-${row}${column}`))))
+const displayFleet = (field) => {
+  field.forEach((value, index) => value === 1 && addShipIn(q(`#one-${index}`)))
 }
-
-mock('one', one)
 
 const battle = window.location.pathname
 const socket = io()
@@ -66,7 +38,7 @@ socket.on('battle.offensive', ofessive => {
 
   play(audios.onNotification)
 
-  if (one[row][column]) {
+  if (one[row][column] === 1) {
     one[row][column] = 'X'
     hitShipIn(position)
     socket.emit('battle.report', { battle: ofessive.battle, target: ofessive.target, hit: true })
@@ -84,13 +56,11 @@ socket.on('battle.report', report => {
   const position = q(`#two-${row}${column}`)
 
   if (report.hit) {
-    two[row][column] = 'X'
     hitShipIn(position)
     play(audios.onShip)
     return
   }
 
-  two[row][column] = 'O'
   hitWaterIn(position)
   play(audios.onWater)
 })
@@ -98,6 +68,15 @@ socket.on('battle.report', report => {
 socket.on('battle.stats', stats => {
   const players = q('#stats-players')
   players.textContent = stats.players.length
+})
+
+socket.on('game.start', data => {
+  console.log(data)
+  play(audios.onNotification)
+  field = data.field
+  displayFleet(field)
+  
+  if (data.flag) q('#stats-flag').classList.remove('hide')
 })
 
 const getTarget = target => {

@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/regular.css" integrity="sha384-z3ccjLyn+akM2DtvRQCXJwvT5bGZsspS4uptQKNXNg778nyzvdMqiGcqHVGiAUyY" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 
 <body>
@@ -21,10 +22,14 @@
 
   <div class="board">
     <div class="player-panel">
-      <div class="battle">
-          <h6><span id="stats-players">0</span> players in this battle!</h6>
-      </div>
-      <div class="field player-one" id="player-one">
+        <div class="battle">
+          <h1>Battleship</h1>
+          <h6><span id="stats-players">0</span> players in this battle</h6>
+        </div>
+        
+        <h3 id="stats-flag" class="animated infinite pulse delay-2s hide">You Turn!</h3>
+
+        <div class="field player-one" id="player-one">
           <svg class="position player-one"></svg>
           <div class="position player-one"><h6>a</h6></div>
           <div class="position player-one"><h6>b</h6></div>
@@ -38,16 +43,16 @@
           <div class="position player-one"><h6>j</h6></div>
     
           <div class="position player-one"><h6>1</h6></div>
-          <svg class="position player-one water" id="one-00"></svg>
-          <svg class="position player-one water" id="one-01"></svg>
-          <svg class="position player-one water" id="one-02"></svg>
-          <svg class="position player-one water" id="one-03"></svg>
-          <svg class="position player-one water" id="one-04"></svg>
-          <svg class="position player-one water" id="one-05"></svg>
-          <svg class="position player-one water" id="one-06"></svg>
-          <svg class="position player-one water" id="one-07"></svg>
-          <svg class="position player-one water" id="one-08"></svg>
-          <svg class="position player-one water" id="one-09"></svg>
+          <svg class="position player-one water" id="one-0"></svg>
+          <svg class="position player-one water" id="one-1"></svg>
+          <svg class="position player-one water" id="one-2"></svg>
+          <svg class="position player-one water" id="one-3"></svg>
+          <svg class="position player-one water" id="one-4"></svg>
+          <svg class="position player-one water" id="one-5"></svg>
+          <svg class="position player-one water" id="one-6"></svg>
+          <svg class="position player-one water" id="one-7"></svg>
+          <svg class="position player-one water" id="one-8"></svg>
+          <svg class="position player-one water" id="one-9"></svg>
     
           <div class="position player-one"><h6>2</h6></div>
           <svg class="position player-one water" id="one-10"></svg>

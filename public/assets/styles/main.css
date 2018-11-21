@@ -6,6 +6,7 @@ body {
   }
 
   h1,
+  h3,
   h6 {
     font-family: 'Open Sans';
     font-weight: 300;
@@ -27,12 +28,12 @@ body {
   .player-panel {
     display: flex;
     flex-flow: column wrap;
+    justify-content: space-between;
   }
 
   .board {
     display: flex;
     justify-content: space-evenly;
-    align-items: flex-end;
   }
   
   .field {
@@ -66,10 +67,11 @@ body {
   .position.player-one.ship { background-color: #0396FF; }
 
   .position.player-one.hit {
-    background-color: #EA5455;
+    background-color: #E96D71;
   }
 
   .field.player-two {
+    align-items: flex-end;
     width: 682px;
     height: 682px;
   }
@@ -95,5 +97,9 @@ body {
   }
   
   .position.player-two.hit {
-      background-color: #28C76F;
+      background-color: #E96D71;
+  }
+
+  .hide {
+    display: none;
   }

@@ -11,11 +11,52 @@ const port = process.env.PORT || 3000
 app.use('/:game', express.static(path.join(__dirname, 'public')))
 app.get('/', (_, res) => res.redirect(`${uuid()}`))
 
+const getRandomBetween = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1)) + min
+
+const getRandomUniq = (min, max, duplicates = []) => {
+  const random = getRandomBetween(min, max)
+  if (duplicates.length > (max-min) ) return false
+  if(duplicates.includes(random) === false) return random
+  return getRandomUniq(min, max, duplicates)
+}
+
+const getRandomUniques = (min, max, size) => {
+  const cells = new Array(size).fill(0)
+  return cells.reduce((acc, _) => [...acc, getRandomUniq(min, max, acc)], [])
+}
+
+const drawField = (size, ships) => {
+  const uniques = getRandomUniques(0, size - 1, ships)
+  const field = new Array(size).fill(0)
+  return field.reduce((acc, _, idx) =>
+    uniques.includes(idx)? [...acc, 1]: [...acc, 0], [])
+}
+
 io.on('connection', socket => {
   socket.on('battle.join', ({ battle }) => {
     socket.join(battle)
     io.in(battle).clients((_, clients) => {
       io.in(battle).emit('battle.stats', { players: clients })
+      if (clients.length === 2) {
+        [playerOne, playerTwo] = clients
+
+        io.to(playerOne).emit('game.start', {
+          battle: battle,
+          player: playerOne,
+          opponent: playerTwo,
+          field: drawField(100, 30),
+          flag: uuid()
+        })
+
+        io.to(playerTwo).emit('game.start', {
+          battle: battle,
+          player: playerTwo,
+          opponent: playerOne,
+          field: drawField(100, 30),
+          flag: ''
+        })
+      }
     })
   })
 
