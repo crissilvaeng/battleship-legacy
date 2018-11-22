@@ -51,6 +51,8 @@ socket.on('battle.offensive', ({ battle, target, flag }) => {
 
 socket.on('battle.report', ({ battle, target, flag, result }) => {
   const position = q(`#two-${target}`)
+  position.removeEventListener('click', onClickHandler, false)
+  position.removeEventListener('mouseenter', () => play(audios.onHover), false)
 
   q('#stats-flag').classList.add('hide')
   turnFlag = ''
@@ -104,8 +106,10 @@ const onClickHandler = event => {
   })
 }
 
+const onMouseEnterTarget = () => play(audios.onHover)
+
 const [...positions] = qs('position player-two water')
-positions.forEach(position => position.onmouseenter = () => play(audios.onHover))
+positions.forEach(position => position.addEventListener('mouseenter', onMouseEnterTarget))
 
 const [...opponent] = qs('position player-two')
-opponent.forEach(position => position.onclick = onClickHandler)
+opponent.forEach(position => position.addEventListener('click', onClickHandler))
