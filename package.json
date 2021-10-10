@@ -1,6 +1,6 @@
 {
   "name": "battleship",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A web battleship game.",
   "main": "server.js",
   "repository": "github.com/crissilvaeng/battleship",
@@ -8,15 +8,12 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node server.js",
-    "deploy": "now --docker -e PORT=443 -e NODE_ENV=production"
+    "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.4",
-    "socket.io": "^2.1.1",
-    "uuid": "^3.3.2"
+    "express": "^4.17.1",
+    "socket.io": "^4.2.0",
+    "uuid": "^8.3.2"
   },
-  "devDependencies": {
-    "nodemon": "^1.18.6"
-  }
+  "type": "module"
 }
